@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Reflection;
+using System.Linq;
 
 namespace CfgManagement
 {
@@ -13,11 +14,14 @@ namespace CfgManagement
             }
             return result;
         }
-
-        public static T Deserialize<T>(T parameter) {
+        public static string Deserialize<T>(string parameter) {
             List<string> externalFields = new List<string>();
-            //====
-            return parameter;
+            var fields = typeof(T).GetFields(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
+
+            foreach(var i in fields) {
+                externalFields.Add(i.Name);
+            }
+            return string.Join("", externalFields);
         }
-    }
+    }   
 }
