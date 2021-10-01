@@ -1,5 +1,5 @@
 using System.Collections.Generic;
-using System;
+using System.Reflection;
 
 namespace CfgManagement
 {
@@ -12,6 +12,12 @@ namespace CfgManagement
                 result.Add(obj[0], obj[1]);
             }
             return result;
+        }
+
+        public static T Deserialize<T>(T parameter) {
+            List<string> externalFields = new List<string>();
+            //====
+            return parameter;
         }
     }
 }
